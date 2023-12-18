@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Todos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3498db;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .todos-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .todos-container h2 {
+            color: #3498db;
+        }
+
+        .todo-item {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #3498db;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #3498db;
+            display: flex; /* Adjusted to use flex */
+            align-items: center; /* Center content vertically */
+            justify-content: space-between; /* Add space between text and progress */
+        }
+
+        .todo-item.completed {
+            background-color: #2ecc71;
+            color: #ffffff;
+        }
+
+        .create-todo-btn {
+            background-color: #27ae60;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .create-todo-btn:hover {
+            background-color: #219c56;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="todos-container">
+        <h2>All Todos</h2>
+        {% for todo_item in obj %}
+        <a href="{% url 'todo-detail' pk=todo_item.pk %}" class="todo-item{% if todo_item.is_completed %} completed{% endif %}">
+            <span>{{ todo_item.title }}</span>
+            <progress value="{{ todo_item.progress }}" max="100"></progress>
+        </a>
+        {% endfor %}
+
+        <!-- For creator role -->
+        {% if request.user.role == 'creator' %}
+        <a href="{% url 'create-todo' %}" class="create-todo-btn">Create Todo</a>
+        {% endif %}
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Todo Detail</title>-->
+<!--    &lt;!&ndash; Add your styles here or link to an external stylesheet &ndash;&gt;-->
+<!--</head>-->
+
+<!--<body>-->
+<!--    <div class="todo-detail-container">-->
+<!--        <h2>Todo Detail</h2>-->
+<!--        <p>Title: {{ todo_item.title }}</p>-->
+<!--        <p>Description: {{ todo_item.description }}</p>-->
+<!--        <p>Progress: {{ todo_item.progress }}%</p>-->
+<!--        <p>PDF: <a href="{% url 'pdf_view' pk=todo_item.pk %}">View PDF</a></p>-->
+
+<!--        &lt;!&ndash; Add more details as needed &ndash;&gt;-->
+
+<!--        <a href="{% url 'all-todos' %}">Back to All Todos</a>-->
+<!--    </div>-->
+<!--</body>-->
+
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Detail</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .todo-detail-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333; /* Dark text color */
+        }
+
+        p {
+            margin: 10px 0;
+            color: #555; /* Medium-dark text color */
+        }
+
+        a {
+            color: #007bff; /* Blue link color */
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Add your styles here or link to an external stylesheet -->
+</head>
+
+<body>
+    <div class="todo-detail-container">
+        <h2>Todo Detail</h2>
+        <p>Title: {{ todo_item.title }}</p>
+        <p class="card-text">Creator: {{ todo_item.user }}</p>
+        <p>Description: {{ todo_item.description }}</p>
+        <p>Progress: {{ todo_item.progress }}%</p>
+        <p>PDF: <a href="{% url 'pdf_view' pk=todo_item.pk %}">View PDF</a></p>
+
+        <!-- Add more details as needed -->
+
+        <a href="{% url 'all-todos' %}">Back to All Todos</a>
+    </div>
+</body>
+
+</html>
